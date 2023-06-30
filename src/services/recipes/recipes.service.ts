@@ -14,6 +14,10 @@ export class RecipesService {
         return this.recipeModel.find()
     }
 
+    async getRecipeById(id) {
+        return this.recipeModel.findById(id)
+    }
+
     async addRecipe(data) {
         const recipe = new RecipeDto(data.title, data.description, data.category, data.id, data.userId, data.img);
         const recipeData = new this.recipeModel(recipe);
@@ -32,7 +36,7 @@ export class RecipesService {
         return this.recipeModel.findByIdAndRemove(id);
     }
 
-    getCategory() {
-        return JSON.stringify(category)
+    async deleteAllRecipes() {
+        return this.recipeModel.deleteMany()
     }
 }

@@ -2,22 +2,36 @@ import {Body, Controller, Delete, Get, Param, Post, Put, UseInterceptors} from '
 import {RecipesService} from "../../services/recipes/recipes.service";
 import {Recipe} from "../../shemas/recipe";
 import {diskStorage} from "multer";
-import { FileInterceptor } from '@nestjs/platform-express/multer';
+import {FileInterceptor} from '@nestjs/platform-express/multer';
 import {IRecipe} from "../../interfaces/recipes";
+import {RecipeDto} from "../../dto/recipe-dto";
 
 @Controller('recipes')
 
 export class RecipesController {
     static imgName: string;
-    constructor(private recipesService: RecipesService) {}
+
+    constructor(private recipesService: RecipesService) {
+    }
 
     @Get()
     getAllRecipes(): Promise<Recipe[]> {
         return this.recipesService.getAllRecipes();
     }
 
-    // @Post()
-    // sendRecipe(@Body() data: RecipeDto): Promise<Recipe> {
+    @Get(':id')
+    getRecipeById(@Param('id') id): Promise<Recipe> {
+        return this.recipesService.getRecipeById(id);
+    }
+
+    @Post('/favorite')
+    sendRecipeForBook(@Body() data: RecipeDto) {
+        return this.recipesService.addRecipe(data)
+    }
+
+
+    // @Post('favorite')
+    // sendRecipeForBook(@Body() data: IRecipe) {
     //     return this.recipesService.addRecipe(data)
     // }
 
@@ -37,16 +51,21 @@ export class RecipesController {
     }))
     sendRecipe(@Body() data: IRecipe) {
         data.img = RecipesController.imgName
-        this.recipesService.addRecipe(data)
+        return this.recipesService.addRecipe(data)
     }
 
     @Put(':id')
-    updateUsers(@Param('id') id, @Body() data): Promise<Recipe> {
+    updateRecipe(@Param('id') id, @Body() data): Promise<Recipe> {
         return this.recipesService.updateRecipe(id, data);
     }
 
     @Delete(':id')
-    deleteUserById(@Param('id') id): Promise<Recipe> {
+    deleteRecipeById(@Param('id') id): Promise<Recipe> {
         return this.recipesService.deleteRecipeById(id);
+    }
+
+    @Delete()
+    deleteAllRecipes() {
+        return this.recipesService.deleteAllRecipes();
     }
 }

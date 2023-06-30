@@ -2,10 +2,10 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 import {IRecipe} from "../interfaces/recipes";
 
-export type RecipeDocument = HydratedDocument<Recipe>;
+export type GeneralRecipeDocument = HydratedDocument<GeneralRecipe>;
 
 @Schema()
-export class Recipe implements IRecipe {
+export class GeneralRecipe implements IRecipe {
 
     @Prop() title: string;
 
@@ -13,11 +13,11 @@ export class Recipe implements IRecipe {
 
     @Prop() category: string;
 
-    @Prop() recipeId: string;   //   -----> добавить
+    @Prop() recipeId: string;
 
     @Prop() userId: string;
 
     @Prop() img: string;
 }
 
-export const RecipeSchema = SchemaFactory.createForClass(Recipe);
+export const GeneralRecipeSchema = SchemaFactory.createForClass(GeneralRecipe);

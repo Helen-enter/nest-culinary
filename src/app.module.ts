@@ -4,13 +4,13 @@ import {AppService} from './app.service';
 import {UsersModule} from './controllers/users/users.module';
 import {MongooseModule} from '@nestjs/mongoose';
 import {RecipesModule} from "./controllers/recipes/recipes.module";
-import {CategoryModule} from "./controllers/category/category.module";
+import {GeneralRecipesModule} from "./controllers/general-recipes/general-recipes.module";
 
 @Module({
     imports: [
         UsersModule,
         RecipesModule,
-        CategoryModule,
+        GeneralRecipesModule,
         MongooseModule.forRoot('mongodb://127.0.0.1:27017/culinary'),
     ],
     controllers: [AppController],
