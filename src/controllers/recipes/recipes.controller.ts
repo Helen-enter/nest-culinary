@@ -29,12 +29,6 @@ export class RecipesController {
         return this.recipesService.addRecipe(data)
     }
 
-
-    // @Post('favorite')
-    // sendRecipeForBook(@Body() data: IRecipe) {
-    //     return this.recipesService.addRecipe(data)
-    // }
-
     @Post()
     @UseInterceptors(FileInterceptor("img", {
         storage: diskStorage({

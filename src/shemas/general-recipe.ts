@@ -9,6 +9,8 @@ export class GeneralRecipe implements IRecipe {
 
     @Prop() title: string;
 
+    @Prop() ingredients: string;
+
     @Prop() description: string;
 
     @Prop() category: string;

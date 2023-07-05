@@ -13,7 +13,15 @@ export class User implements IUser {
 
     @Prop() email: string;
 
-    @Prop() id: string;   //   -----> добавить
+    @Prop() id: string; //   -----> добавить
+
+    @Prop() calories: string
+
+    @Prop() proteins: string
+
+    @Prop() fats: string
+
+    @Prop() carbohydrates: string
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

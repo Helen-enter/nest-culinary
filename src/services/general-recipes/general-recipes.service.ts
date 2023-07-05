@@ -18,7 +18,7 @@ export class GeneralRecipesService {
     }
 
     async addRecipe(data) {
-        const recipe = new GeneralRecipeDto(data.title, data.description, data.category, data.recipeId, data.userId, data.img);
+        const recipe = new GeneralRecipeDto(data.title, data.ingredients, data.description, data.category, data.recipeId, data.userId, data.img);
         const recipeData = new this.generalRecipeModel(recipe);
         await recipeData.save();
     }
